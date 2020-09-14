@@ -27,11 +27,12 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * counter1 uses closure and counter2 does not. 
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ * counter1 uses closure, because there is a nested function inside
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ *counter2 begins at 0 and each time counter2() is ran the count increases by 1.
+with counter1, the counterMaker function is ran and the count is reset to zero and adds one. Then, 1 is added to counter1.
 */
 
 // counter1 code
@@ -56,10 +57,9 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+  score = Math.floor(Math.random() * 3);
+  return score;
 }
 
 /* Task 3: finalScore()
@@ -73,15 +73,23 @@ finalScore(inning, 9) might return:
   "Home": 11,
   "Away": 5,
 }
-
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function finalScore(innings, callback){
+    let count1 = 0;
+    let count2 = 0;
+    for(let i=0; i<innings; i++){
+      callback();
+      count1 += callback();
+    }
+    for(let i=0; i<innings; i++){
+      callback();
+      count2 += callback();
+    }
+    const final = {Home:count1, Away:count2};
+    return final 
 }
-
+console.log(finalScore(9,inning));
 /* Task 4: 
 
 Create a function called `scoreboard` that accepts the following parameters: 
@@ -104,8 +112,27 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+
+function scoreboard(innings, getInningsScore, callback) {
+    let count1 = 0;
+    let count2 = 0;
+    let indh = [];
+    let inda = [];
+  
+    for(let i=0; i<getInningsScore; i++){
+      callback();
+      indh[i] = callback();
+      count1 += callback();
+    }
+    for(let i=0; i<getInningsScore; i++){
+      callback();
+      inda[i] = callback();
+      count2 += callback();
+    }
+    for(let i=0; i<getInningsScore; i++){
+      console.log(i+1 + "  inning:  " + inda[i] + " - " + indh[i])
+     }
+     return `Final Score: ${count2} - ${count1}`;
 }
 
-
+console.log(scoreboard(9, 9, inning))
