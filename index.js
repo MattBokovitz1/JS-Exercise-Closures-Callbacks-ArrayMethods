@@ -78,14 +78,17 @@ finalScore(inning, 9) might return:
 function finalScore(innings, callback){
     let count1 = 0;
     let count2 = 0;
+    /* Home team score */
     for(let i=0; i<innings; i++){
-      callback();
-      count1 += callback();
+      let hoScore = callback();
+      count1 += hoScore;
     }
+    /* Away team score */
     for(let i=0; i<innings; i++){
-      callback();
-      count2 += callback();
+      let awScore = callback();
+      count2 += awScore;
     }
+    /* Create Object */
     const final = {Home:count1, Away:count2};
     return final 
 }
@@ -118,17 +121,19 @@ function scoreboard(innings, getInningsScore, callback) {
     let count2 = 0;
     let indh = [];
     let inda = [];
-  
+  /* Home team score */
     for(let i=0; i<getInningsScore; i++){
-      callback();
-      indh[i] = callback();
-      count1 += callback();
+      let inniScore = callback();
+      indh[i] = inniScore;
+      count1 += inniScore;
     }
+    /* Away team score */
     for(let i=0; i<getInningsScore; i++){
-      callback();
-      inda[i] = callback();
-      count2 += callback();
+      let innScore = callback();
+      inda[i] = innScore;
+      count2 += innScore;
     }
+    /* Print for Scoreboard */
     for(let i=0; i<getInningsScore; i++){
       console.log(i+1 + "  inning:  " + inda[i] + " - " + indh[i])
      }
