@@ -1,46 +1,115 @@
-# Closures, Callbacks and Array Methods
+# Scope and Closure Challenge
 
-This challenge focuses on closures, callbacks and array methods.
+The module challenge is the afternoon project or assignment that students work through independently. This expands on the guided project completed earlier with the instructor.
 
-You are encouraged to use the [MDN website](https://developer.mozilla.org/en-US/) as well as Google, to figure things out.
+## JavaScript Foundations
 
-Use Google effectively! For example, let's say you want to learn more about the `reduce` array method. Here are some Google searches you could try:
-```
-  mdn array reduce
-```
-```
-  array.prototype.reduce
-```
-```
-  reduce site:mozilla.org
-```
-```
-  javascript reduce site:stackoverflow.com
-```
+## Scope and Closures
 
-Commit often! **Plan to commit & push every time you get a new test passing**. This makes it SO much easier to figure out "what broke my code", and helps your TL keep track of how you're doing.
+## Objectives
 
-If you run into trouble while coding, fight the good fight for 20 minutes and then get on the help channel. __Remember to formulate your help request in a professional manner__ - like you would at the job - by including error messages, screenshots, and any other pertinent information about the problem, as well as what things you have attempted already while trying to solve it.
+- Explain function scope
+- Describe what closure is, how closure is created in a program and why it is important to understand closures in JavaScript  
 
-##### Index
+## Introduction
 
-* [Instructions](#instructions)
-* [Get Started](#get-started)
+This challenge focuses on both scope and closures.
+
+In this challenge you will be working to build a `scoreboard` (in the console) that takes randomly generated data and keeps track of a game's progress. If you're not familiar with the rules of baseball what you need to know is this: there are 9 innings and teams take turns "at-bat." Teams can only score while they are at bat. A team stops being at bat once they have gotten 3 `outs` by either striking out or through game play. You can read more about baseball rules [here](https://www.rulesofsport.com/sports/baseball.html).
+
+A scoreboard in a major league stadium looks something like this. In fact, the scoreboard at Fenway Park in Boston is actually quite famous. 
+
+![Fenway Scoreboard](https://storage.googleapis.com/afs-prod/media/media:e959506330fd4e5890023c93cfbaac55/800.jpeg)
+
+There are layers upon layers of nested functions within the game of baseball. Your challenge today will be to work through tasks associated with these layers, and ultimately to produce a scoreboard that logs in the console.
 
 ## Instructions
 
-Find the file `index.js` and complete the tasks until your tests are passing. One of the tests corresponds to a stretch task! Attempt the stretch task only after completing all other tasks.
-
-## Get Started
-
-<summary><strong>Using VSCode and a Command Line:</strong></summary>
+### Task 1 - Set Up Project and Tests
 
 1. Fork repo and add TL as collaborator on Github
-1. Clone _your_ fork (not Lambda's repo by mistake!)
-1. `cd` into your newly cloned repository
+2. Clone _your_ fork (not Lambda's repo by mistake!)
+3. `cd` into your newly cloned repository
 1. Create a new branch by typing `git checkout -b <firstName-lastName>`
-1. Install dependencies by typing `npm install`
-1. Run tests by typing `npm run test:watch`
-1. Work on your branch, push commits and create PR as usual
+4. Install dependencies by typing `npm install`
+5. Run tests by typing `npm run test:watch`
+6. Work on your branch, push commits and create PR as usual
 
-<img alt='instructions screenshot' src='./instructions.png'>
+### Task 2a - MVP code
+
+Find the file `index.js` and complete the tasks until your tests are passing.
+
+### Task 2b - Written questions
+
+Edit the `ReadMe` file with your answers.
+
+1. In your own words, define closure (1-2 sentences).
+
+Closure means that the inner function of a nested function has access to the variables and parameters from the outer function(s). 
+2. Study the following code, then answer the questions below.
+
+```js
+function personalDice(name){
+  return function(){
+      // generate random number between 1 and 6
+    const newRoll = Math.floor(Math.random() * 6);
+    console.log(`${name} rolled a ${newRoll}`)
+  }
+}
+
+const dansRoll = personalDice("Dan");
+
+const zoesRoll = personalDice("Zoe");
+
+
+dansRoll();
+dansRoll();
+```
+
+a. Where is closure used in this code? How can you tell?
+The name parameter that is inserted to the outer function is used in the console.log of the inner function. 
+b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+The name must equal Dan, but the newRoll can change.
+c. What is the lexical scope of `newRoll`? 
+The scope of newRoll is only in the inner function.
+
+### Task 3 - Stretch Goals
+
+After you have completed the requirements, **create** a new file called `stretch.js` and practice more with closures. There are no tests for these problems.
+
+See if you can complete one or more of the following challenges:
+
+1. Predict the output of the code below and explain why this is the output using what you learned today. When you're ready for answers, view an explanation [here](https://www.coderbyte.com/algorithm/3-common-javascript-closure-questions
+
+```js
+(function(){
+  var a = b = 3;
+})();
+console.log("a defined? " + (typeof a !== 'undefined'));
+console.log("b defined? " + (typeof b !== 'undefined'));
+```
+
+2. Write a function that would allow you to do this using a closure. (This is another interview question we've seen before - when you're ready for answers, view an explanation [here](https://www.coderbyte.com/algorithm/3-common-javascript-closure-questions)).
+
+```js
+var addSix = createBase(6);
+addSix(10); // returns 16
+addSix(21); // returns 27
+```
+
+3. Research the differences between functional programming and object oriented programming. Then, describe the pros and cons of functional programming vs object-oriented programming. This is a common interview question and great practice!
+
+
+## Resources
+
+📚 [Scope and Closures Guide](https://css-tricks.com/javascript-scope-closures/)
+
+🧠 ["I never Understood Closures" Blog](https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8)
+
+## Submission Format
+
+Follow these steps for completing your project.
+
+- [ ] Submit a pull request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request**
+- [ ] Add your Team Lead as a reviewer on the pull request
+- [ ] Your Team Lead will count the project as complete by merging the branch back into master
